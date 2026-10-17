@@ -1,0 +1,674 @@
+
+/* ========================================
+   PROPERTYMATCH - HOME PAGE
+======================================== */
+
+.home-page {
+  width: 100%;
+  overflow: hidden;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+.home-page *,
+.hero-search * {
+  box-sizing: border-box;
+}
+
+/* ========================================
+   HERO SECTION
+======================================== */
+
+.hero-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(350px, 0.9fr);
+  align-items: center;
+  gap: 52px;
+
+  padding: 78px max(4%, calc((100% - 1200px) / 2));
+
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(16, 185, 129, 0.13),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #0f172a 0%, #172554 55%, #1e293b 100%);
+
+  color: #ffffff;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 14px;
+
+  color: #059669;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.hero-eyebrow {
+  padding: 9px 14px;
+
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  border-radius: 30px;
+
+  background: rgba(16, 185, 129, 0.1);
+  color: #6ee7b7;
+}
+
+.hero-content h1 {
+  max-width: 650px;
+  margin: 12px 0 22px;
+
+  color: #ffffff;
+  font-size: clamp(2.5rem, 4.3vw, 4rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -1.5px;
+}
+
+.hero-content h1 span {
+  display: block;
+  color: #34d399;
+}
+
+.hero-description {
+  max-width: 570px;
+  margin: 0 0 28px;
+
+  color: #cbd5e1;
+  font-size: 1.04rem;
+  line-height: 1.85;
+}
+
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.hero-trust span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.hero-trust svg {
+  flex-shrink: 0;
+  color: #34d399;
+}
+
+/* ========================================
+   SEARCH CARD
+======================================== */
+
+.hero-search {
+  width: 100%;
+  max-width: 490px;
+  justify-self: end;
+
+  padding: 30px;
+
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 22px;
+
+  background: #ffffff;
+  color: #0f172a;
+
+  box-shadow:
+    0 25px 60px rgba(2, 6, 23, 0.22),
+    0 4px 12px rgba(2, 6, 23, 0.06);
+}
+
+.hero-search h2 {
+  margin: 0 0 8px;
+
+  color: #0f172a;
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.hero-search > p {
+  margin: 0 0 25px;
+
+  color: #64748b;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+/* ========================================
+   SEARCH BAR FORM
+   Matches SearchBar.jsx class names
+======================================== */
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+
+  width: 100%;
+  margin: 0;
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.search-field > span {
+  color: #334155;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+/* Select and standard input */
+
+.search-field select,
+.search-field > input,
+.search-location-input input {
+  width: 100%;
+  min-width: 0;
+  height: 49px;
+
+  padding: 0 14px;
+
+  border: 1px solid #dbe3ed;
+  border-radius: 10px;
+
+  background-color: #f8fafc;
+  color: #0f172a;
+
+  font-family: inherit;
+  font-size: 0.93rem;
+
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.search-field select {
+  cursor: pointer;
+}
+
+.search-field input::placeholder {
+  color: #94a3b8;
+}
+
+/* Focus states */
+
+.search-field select:focus,
+.search-field > input:focus,
+.search-location-input input:focus {
+  border-color: #10b981;
+  background: #ffffff;
+
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+}
+
+/* ========================================
+   LOCATION INPUT WITH ICON
+======================================== */
+
+.search-location-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.search-location-input > svg {
+  position: absolute;
+  left: 14px;
+  z-index: 1;
+
+  flex-shrink: 0;
+  color: #059669;
+  pointer-events: none;
+}
+
+.search-location-input input {
+  padding-left: 43px;
+}
+
+/* ========================================
+   SEARCH BUTTON
+======================================== */
+
+.search-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  min-height: 51px;
+  margin-top: 3px;
+  padding: 13px 20px;
+
+  border: 1px solid #059669;
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #059669, #047857);
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 12px rgba(5, 150, 105, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.search-submit svg {
+  flex-shrink: 0;
+}
+
+.search-submit:hover {
+  background: linear-gradient(135deg, #047857, #065f46);
+  box-shadow: 0 8px 18px rgba(5, 150, 105, 0.24);
+  transform: translateY(-2px);
+}
+
+.search-submit:active {
+  transform: translateY(0);
+}
+
+.search-submit:focus-visible {
+  outline: 3px solid #6ee7b7;
+  outline-offset: 3px;
+}
+
+/* ========================================
+   FEATURED PROPERTIES SECTION
+======================================== */
+
+.page-section {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 76px 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+
+  margin-bottom: 32px;
+}
+
+.section-heading h2 {
+  margin: 0 0 10px;
+
+  color: #0f172a;
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+
+.section-heading p {
+  margin: 0;
+
+  color: #64748b;
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 10px;
+}
+
+/* View all link */
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+
+  padding: 10px 0;
+
+  border: none;
+  background: transparent;
+  color: #047857;
+
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 750;
+
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.text-link:hover {
+  color: #065f46;
+}
+
+.text-link svg {
+  transition: transform 0.2s ease;
+}
+
+.text-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* Property cards grid */
+
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 26px;
+}
+
+.empty-properties {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px 20px;
+
+  border: 1px dashed #cbd5e1;
+  border-radius: 16px;
+
+  background: #ffffff;
+  text-align: center;
+}
+
+.empty-properties > svg {
+  margin-bottom: 12px;
+  color: #059669;
+}
+
+.empty-properties h3 {
+  margin: 0 0 8px;
+  color: #0f172a;
+}
+
+.empty-properties p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* ========================================
+   SMART MATCH BANNER
+======================================== */
+
+.smart-banner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  width: min(1200px, 92%);
+  margin: 0 auto 76px;
+  padding: 34px;
+
+  border: 1px solid #a7f3d0;
+  border-radius: 20px;
+
+  background:
+    radial-gradient(
+      circle at 95% 0%,
+      rgba(16, 185, 129, 0.1),
+      transparent 40%
+    ),
+    #ecfdf5;
+}
+
+.smart-banner-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 68px;
+  height: 68px;
+
+  border-radius: 17px;
+  background: #d1fae5;
+  color: #047857;
+}
+
+.smart-banner-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.smart-banner-content .eyebrow {
+  margin-bottom: 8px;
+}
+
+.smart-banner-content h2 {
+  margin: 0 0 10px;
+
+  color: #064e3b;
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.smart-banner-content p {
+  margin: 0;
+
+  color: #475569;
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.smart-banner-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-shrink: 0;
+
+  min-height: 49px;
+  padding: 13px 20px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #059669;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 0.93rem;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smart-banner-button:hover {
+  background: #047857;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+  .hero-section {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+    gap: 30px;
+
+    padding-top: 62px;
+    padding-bottom: 62px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+  }
+
+  .hero-search {
+    padding: 25px;
+  }
+
+  .property-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .smart-banner {
+    flex-wrap: wrap;
+  }
+
+  .smart-banner-content {
+    flex-basis: calc(100% - 100px);
+  }
+
+  .smart-banner-button {
+    margin-left: 92px;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 650px) {
+  .hero-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+
+    padding: 48px 5% 42px;
+  }
+
+  .hero-content h1 {
+    margin-top: 10px;
+    font-size: clamp(2.2rem, 8.5vw, 3rem);
+    letter-spacing: -0.8px;
+  }
+
+  .hero-description {
+    font-size: 0.97rem;
+    line-height: 1.75;
+  }
+
+  .hero-trust {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-search {
+    max-width: none;
+    justify-self: stretch;
+
+    padding: 24px;
+    border-radius: 17px;
+  }
+
+  .hero-search h2 {
+    font-size: 1.5rem;
+  }
+
+  .search-bar {
+    gap: 17px;
+  }
+
+  .page-section {
+    padding: 48px 0;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .section-heading h2 {
+    font-size: 1.75rem;
+  }
+
+  .section-heading p {
+    font-size: 0.9rem;
+  }
+
+  .property-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .smart-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+
+    margin-bottom: 46px;
+    padding: 24px;
+  }
+
+  .smart-banner-icon {
+    width: 58px;
+    height: 58px;
+  }
+
+  .smart-banner-content {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .smart-banner-button {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+  .hero-section {
+    padding-right: 4%;
+    padding-left: 4%;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-search {
+    padding: 19px;
+  }
+
+  .section-heading {
+    flex-direction: column;
+  }
+
+  .smart-banner {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,102 @@
+.add-property-page {
+    padding: 35px 0 65px;
+  }
+  
+  .add-property-header {
+    margin-bottom: 25px;
+  }
+  
+  .add-property-header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+  }
+  
+  .add-property-header p {
+    margin-top: 7px;
+    color: #64748b;
+  }
+  
+  .add-property-form {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+  }
+  
+  .add-property-section {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .add-property-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  
+  .add-property-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  
+  .add-property-field label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .add-property-field.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  .add-property-amenities {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  
+  .add-property-amenities label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #475569;
+    font-size: 0.9rem;
+  }
+  
+  .add-property-amenities input {
+    width: auto;
+    accent-color: #10b981;
+  }
+  
+  .add-property-submit {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  
+  .add-property-error {
+    margin-bottom: 16px;
+    color: #b91c1c;
+  }
+  
+  @media (max-width: 600px) {
+    .add-property-form {
+      padding: 20px;
+    }
+  
+    .add-property-grid,
+    .add-property-amenities {
+      grid-template-columns: 1fr;
+    }
+  
+    .add-property-field.full-width {
+      grid-column: auto;
+    }
+  
+    .add-property-submit {
+      flex-direction: column;
+    }
+  }

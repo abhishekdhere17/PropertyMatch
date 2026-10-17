@@ -1,0 +1,100 @@
+.manage-users-page {
+    padding: 35px 0 60px;
+  }
+  
+  .manage-users-header {
+    margin-bottom: 25px;
+  }
+  
+  .manage-users-header h1 {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+  }
+  
+  .manage-users-header p {
+    margin-top: 7px;
+    color: #64748b;
+  }
+  
+  .manage-users-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+  }
+  
+  .manage-users-toolbar input {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .manage-users-toolbar select {
+    width: auto;
+    min-width: 160px;
+  }
+  
+  .manage-users-table-wrapper {
+    overflow-x: auto;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+  }
+  
+  .manage-users-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  
+  .manage-users-table th,
+  .manage-users-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+  }
+  
+  .manage-users-table th {
+    background: #f8fafc;
+    color: #475569;
+    font-size: 0.85rem;
+  }
+  
+  .manage-users-table td {
+    font-size: 0.9rem;
+  }
+  
+  .manage-users-role {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .manage-users-actions button {
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 7px;
+    background: #ffffff;
+    font-weight: 600;
+  }
+  
+  .manage-users-actions button:hover {
+    border-color: #10b981;
+    color: #047857;
+  }
+  
+  @media (max-width: 600px) {
+    .manage-users-toolbar {
+      flex-direction: column;
+    }
+  
+    .manage-users-toolbar select {
+      width: 100%;
+    }
+  }

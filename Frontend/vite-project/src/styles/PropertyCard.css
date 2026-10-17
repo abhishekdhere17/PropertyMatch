@@ -1,0 +1,296 @@
+
+.property-card {
+    min-width: 0;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  
+  .property-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgb(15 23 42 / 9%);
+  }
+  
+  .property-image-wrap {
+    position: relative;
+    height: 225px;
+    overflow: hidden;
+    background: #e2e8f0;
+  }
+  
+  .property-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+  
+  .property-card:hover .property-image {
+    transform: scale(1.035);
+  }
+  
+  .property-purpose {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    padding: 7px 11px;
+    background: #ffffff;
+    color: #0f172a;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  .save-property {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #475569;
+    cursor: pointer;
+  }
+  
+  .save-property.is-saved {
+    color: #ef4444;
+  }
+  
+  .image-nav {
+    position: absolute;
+    top: 50%;
+    width: 32px;
+    height: 32px;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 92%);
+    color: #0f172a;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  .image-prev {
+    left: 10px;
+  }
+  
+  .image-next {
+    right: 10px;
+  }
+  
+  .image-count {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 9px;
+    background: rgb(15 23 42 / 80%);
+    color: #ffffff;
+    border-radius: 6px;
+    font-size: 12px;
+  }
+  
+  .property-card-body {
+    padding: 18px;
+  }
+  
+  .property-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  
+  .property-heading h3 {
+    margin: 0 0 8px;
+    color: #0f172a;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  
+  .property-location {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    margin: 0;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  .property-location svg {
+    flex-shrink: 0;
+    color: #10b981;
+  }
+  
+  .match-score {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 8px;
+    border-radius: 9px;
+  }
+  
+  .match-score strong {
+    font-size: 20px;
+  }
+  
+  .match-score span {
+    font-size: 9px;
+    white-space: nowrap;
+  }
+  
+  .score-high {
+    background: #ecfdf5;
+    color: #047857;
+  }
+  
+  .score-normal {
+    background: #f1f5f9;
+    color: #475569;
+  }
+  
+  .property-price {
+    margin: 18px 0;
+    color: #0f172a;
+    font-size: 22px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+  }
+  
+  .property-features {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .property-features span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #475569;
+    font-size: 11px;
+  }
+  
+  .property-features svg {
+    color: #64748b;
+  }
+  
+  .property-amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 14px;
+  }
+  
+  .property-amenities span {
+    padding: 6px 8px;
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 6px;
+    font-size: 10px;
+  }
+  
+  .property-owner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  
+  .owner-avatar {
+    width: 37px;
+    height: 37px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #d1fae5;
+    color: #047857;
+    font-weight: 800;
+  }
+  
+  .owner-details {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .owner-details strong {
+    color: #0f172a;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+  
+  .owner-details span {
+    color: #64748b;
+    font-size: 11px;
+  }
+  
+  .owner-phone {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    color: #047857;
+    background: #ecfdf5;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+  
+  .property-card-actions {
+    margin-top: 17px;
+  }
+  
+  .property-details-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: #0f172a;
+    color: #ffffff;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  
+  .property-details-link:hover {
+    background: #10b981;
+  }
+  
+  @media (max-width: 480px) {
+    .property-image-wrap {
+      height: 205px;
+    }
+  
+    .property-card-body {
+      padding: 14px;
+    }
+  
+    .property-heading {
+      flex-wrap: wrap;
+    }
+  }
+  

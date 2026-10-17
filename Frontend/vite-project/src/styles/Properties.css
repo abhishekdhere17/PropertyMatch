@@ -1,0 +1,118 @@
+
+.listing-page {
+    max-width: 1200px;
+    min-height: 65vh;
+    margin: 0 auto;
+    padding: 55px 24px;
+  }
+  
+  .listing-heading {
+    margin-bottom: 30px;
+  }
+  
+  .listing-heading h1 {
+    margin: 12px 0;
+    color: #0f172a;
+    font-size: clamp(28px, 4vw, 40px);
+  }
+  
+  .listing-heading p {
+    color: #64748b;
+  }
+  
+  .listing-filters {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    padding: 22px;
+    margin-bottom: 25px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+  }
+  
+  .listing-filters label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  .listing-filters input,
+  .listing-filters select {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    padding: 0 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #0f172a;
+    font: inherit;
+  }
+  
+  .listing-results-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+    color: #64748b;
+    font-size: 13px;
+  }
+  
+  .listing-results-heading p {
+    margin: 0;
+  }
+  
+  .listing-results-heading strong {
+    color: #0f172a;
+  }
+  
+  .empty-state {
+    padding: 60px 20px;
+    text-align: center;
+    background: #f8fafc;
+    border-radius: 14px;
+  }
+  
+  .empty-state h2 {
+    color: #0f172a;
+  }
+  
+  .empty-state p {
+    color: #64748b;
+  }
+  
+  .empty-state button {
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: #0f172a;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 800px) {
+    .listing-filters {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  @media (max-width: 520px) {
+    .listing-page {
+      padding: 36px 16px;
+    }
+  
+    .listing-filters {
+      grid-template-columns: 1fr;
+      padding: 16px;
+    }
+  
+    .listing-results-heading {
+      flex-direction: column;
+    }
+  }
+  
