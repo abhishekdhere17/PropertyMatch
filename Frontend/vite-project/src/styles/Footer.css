@@ -75,6 +75,9 @@
   .footer-bottom p {
     margin: 0;
   }
+  .footer-made .Signature{
+    color: white;
+  }
   
   .footer-made {
     display: flex;

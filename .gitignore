@@ -1,4 +1,29 @@
-node_modules
-target
-dist
+# Node.js / React
+node_modules/
+Frontend/**/node_modules/
+Frontend/**/dist/
+
+# Java / Maven
+target/
+Backend/**/target/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+application-local.properties
+
+# Uploaded property images (local files)
+uploads/
+**/uploads/
+
+# Logs
+*.log
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# macOS
 .DS_Store

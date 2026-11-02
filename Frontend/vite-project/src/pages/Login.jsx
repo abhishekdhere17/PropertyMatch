@@ -13,33 +13,40 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    setError("");
-    setLoading(true);
+  
+async function handleSubmit(event) {
+  event.preventDefault();
+  setError("");
+  setLoading(true);
 
-    try {
-      const data = await authService.login({ email, password });
-      const role = data.user?.role;
+  try {
+    const data = await authService.login({ email, password });
+    const role = data.user?.role ?? data.role;
 
-      if (location.state?.from) {
-        navigate(location.state.from.pathname, { replace: true });
-      } else if (role === "MAIN_ADMIN" || role === "ADMIN") {
-        navigate("/admin");
-      } else if (role === "SELLER") {
-        navigate("/seller");
-      } else {
-        navigate("/");
-      }
-    } catch (err) {
-      setError(
-        err.response?.data?.message ||
-        "Login failed. Check your credentials and backend connection."
-      );
-    } finally {
-      setLoading(false);
+    console.log("Detected role:", role);
+    console.log("Saved user:", localStorage.getItem("user"));
+
+    // Send admins directly to the admin dashboard.
+    if (role === "MAIN_ADMIN" || role === "ADMIN") {
+      navigate("/admin", { replace: true });
+    } else if (role === "SELLER") {
+      navigate("/seller", { replace: true });
+    } else if (location.state?.from?.pathname) {
+      navigate(location.state.from.pathname, { replace: true });
+    } else {
+      navigate("/", { replace: true });
     }
+  } catch (err) {
+    console.error("Login error:", err);
+    setError(
+      err.response?.data?.message ||
+      "Login failed. Check your credentials and backend connection."
+    );
+  } finally {
+    setLoading(false);
   }
+}
+
 
   return (
     <main className="auth-page">

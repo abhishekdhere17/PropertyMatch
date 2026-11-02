@@ -1,29 +1,45 @@
 
 import api from "./api";
 
-export const propertyService = {
-  getAll: (params = {}) => api.get("/properties", { params }),
+export const authService = {
+  login: async (credentials) => {
+    const response = await api.post("/auth/login", credentials);
+    const data = response.data;
 
-  getById: (id) => api.get(`/properties/${id}`),
+    if (!data.token) {
+      throw new Error("Login response did not contain a token.");
+    }
 
-  search: (params) => api.get("/properties/search", { params }),
+    // Save the JWT token.
+    localStorage.setItem("token", data.token);
 
-  smartMatch: (preferences) =>
-    api.post("/properties/match", preferences),
+    // Support both nested and flat backend responses.
+    const user = data.user ?? {
+      id: data.userId,
+      fullName: data.fullName,
+      email: data.email,
+      role: data.role,
+    };
 
-  create: (formData) =>
-    api.post("/properties", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    }),
+    if (!user.role) {
+      throw new Error("Login response did not contain a user role.");
+    }
 
-  update: (id, formData) =>
-    api.put(`/properties/${id}`, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    }),
+    // Save the user for ProtectedRoute.jsx.
+    localStorage.setItem("user", JSON.stringify(user));
 
-  delete: (id) => api.delete(`/properties/${id}`),
+    return {
+      ...data,
+      user,
+    };
+  },
 
-  save: (id) => api.post(`/users/me/saved-properties/${id}`),
+  register: (userData) => api.post("/auth/register", userData),
 
-  getSaved: () => api.get("/users/me/saved-properties"),
+  logout: () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  },
+
+  getCurrentUser: () => api.get("/auth/me"),
 };

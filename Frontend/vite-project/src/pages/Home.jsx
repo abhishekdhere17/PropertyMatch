@@ -1,5 +1,7 @@
 
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import {
   ArrowRight,
   Target,
@@ -9,7 +11,7 @@ import {
 
 import SearchBar from "../components/SearchBar";
 import PropertyCard from "../components/PropertyCard";
-import { properties } from "../data/properties";
+import api from "../services/api";
 
 import "../styles/Home.css";
 import "../styles/PropertyCard.css";
@@ -17,12 +19,52 @@ import "../styles/PropertyCard.css";
 export default function Home() {
   const navigate = useNavigate();
 
+  const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchProperties = async () => {
+      try {
+        setLoading(true);
+        setError("");
+
+        const response = await api.get("/properties");
+
+        if (isMounted) {
+          setProperties(
+            Array.isArray(response.data) ? response.data : []
+          );
+        }
+      } catch (err) {
+        console.error("Failed to load properties:", err);
+
+        if (isMounted) {
+          setError("Unable to load properties. Please try again.");
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchProperties();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   function handleSearch(filters) {
     navigate("/buy", {
       state: { filters },
     });
   }
 
+  // Show only the first 3 approved properties.
   const featured = properties.slice(0, 3);
 
   return (
@@ -93,21 +135,32 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="property-grid">
-          {featured.map((property) => (
-            <PropertyCard
-              key={property.id}
-              property={property}
-            />
-          ))}
-        </div>
-
-        {featured.length === 0 && (
+        {loading ? (
+          <div className="empty-properties">
+            <p>Loading properties...</p>
+          </div>
+        ) : error ? (
           <div className="empty-properties">
             <Search size={32} />
-            <h3>No featured properties yet</h3>
+            <h3>Could not load properties</h3>
+            <p>{error}</p>
+          </div>
+        ) : featured.length > 0 ? (
+          <div className="property-grid">
+            {featured.map((property) => (
+              <PropertyCard
+                key={property.id}
+                property={property}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="empty-properties">
+            <Search size={32} />
+            <h3>No properties available yet</h3>
             <p>
-              Properties will appear here when they are available.
+              Approved properties will appear here when sellers
+              add them to PropertyMatch.
             </p>
           </div>
         )}

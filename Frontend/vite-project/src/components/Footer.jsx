@@ -39,7 +39,7 @@ export default function Footer() {
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} PropertyMatch. All rights reserved.</p>
         <p className="footer-made">
-          Made with <Heart size={15} fill="currentColor" /> for better home finding.
+          Developed By <Heart size={15} fill="currentColor" /> <a href="https://www.linkedin.com/in/abhishek-dhere" target="_blank" className="Signature">Abhishek Dhere</a>
         </p>
       </div>
     </footer>

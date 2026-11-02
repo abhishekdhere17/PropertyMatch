@@ -1,135 +1,386 @@
+
+/* ==========================================
+   PROPERTYMATCH — SMART MATCH PAGE
+   Theme: Navy, Emerald Green, Light Gray
+   ========================================== */
+
+/* ---------- Main page ---------- */
+
 .smart-match-page {
-    padding: 55px 0 75px;
+  width: 100%;
+  max-width: 1280px;
+  min-height: 65vh;
+  margin: 0 auto;
+  padding: 48px 32px 64px;
+  box-sizing: border-box;
+  color: #0f172a;
+}
+
+/* ---------- Hero / Introduction ---------- */
+
+.smart-match-intro {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0 auto 32px;
+  padding: 44px 28px;
+  text-align: center;
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdfa 55%, #f8fafc 100%);
+  border: 1px solid #d1fae5;
+  border-radius: 20px;
+}
+
+.smart-match-intro > svg {
+  display: block;
+  margin: 0 auto 18px;
+  color: #059669;
+}
+
+.smart-match-intro .eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #047857;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.smart-match-intro h1 {
+  margin: 8px 0 14px;
+  color: #0f172a;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  line-height: 1.2;
+}
+
+.smart-match-intro p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* ---------- Requirements form ---------- */
+
+.match-form {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 42px;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.045);
+  box-sizing: border-box;
+}
+
+.match-form h2 {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 0 26px;
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.match-form h2 svg {
+  flex-shrink: 0;
+  color: #059669;
+}
+
+/* ---------- Form fields ---------- */
+
+.match-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 20px;
+}
+
+.match-form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.match-form-grid input:not([type="checkbox"]),
+.match-form-grid select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.match-form-grid input::placeholder {
+  color: #94a3b8;
+}
+
+.match-form-grid input:not([type="checkbox"]):hover,
+.match-form-grid select:hover {
+  border-color: #94a3b8;
+}
+
+.match-form-grid input:not([type="checkbox"]):focus,
+.match-form-grid select:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+}
+
+/* ---------- Parking checkbox ---------- */
+
+.match-form-grid .match-checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: end;
+  gap: 11px;
+  min-height: 48px;
+  padding: 0 2px;
+  cursor: pointer;
+}
+
+.match-form-grid .match-checkbox input[type="checkbox"] {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #059669;
+  cursor: pointer;
+}
+
+/* ---------- Find matches button ---------- */
+
+.match-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 50px;
+  margin-top: 30px;
+  padding: 13px 22px;
+  border: 1px solid #059669;
+  border-radius: 10px;
+  background: #059669;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.match-submit svg {
+  flex-shrink: 0;
+}
+
+.match-submit:hover {
+  background: #047857;
+  border-color: #047857;
+  box-shadow: 0 5px 14px rgba(5, 150, 105, 0.18);
+}
+
+.match-submit:focus-visible {
+  outline: 3px solid #6ee7b7;
+  outline-offset: 3px;
+}
+
+/* ---------- Matching results ---------- */
+
+.match-results {
+  width: 100%;
+  margin-top: 44px;
+}
+
+.match-results > h2 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+}
+
+.match-results > p {
+  margin: 0 0 26px;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Two spacious property cards per row */
+.match-results .property-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.match-results .property-grid > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ---------- No matches state ---------- */
+
+.match-results .empty-state {
+  padding: 54px 24px;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 16px;
+}
+
+.match-results .empty-state h3 {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-size: 21px;
+}
+
+.match-results .empty-state p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+  .smart-match-page {
+    padding: 36px 24px 52px;
   }
-  
-  .smart-match-hero {
-    padding: 45px 25px;
-    margin-bottom: 30px;
-    text-align: center;
-    border-radius: 18px;
-    background: #0f172a;
-    color: #ffffff;
+
+  .smart-match-intro {
+    padding: 38px 24px;
   }
-  
-  .smart-match-hero h1 {
-    margin-bottom: 12px;
-    font-size: clamp(2rem, 5vw, 3rem);
-  }
-  
-  .smart-match-hero h1 span {
-    color: #34d399;
-  }
-  
-  .smart-match-hero p {
-    max-width: 650px;
-    margin: 0 auto;
-    color: #cbd5e1;
-  }
-  
-  .smart-match-layout {
-    display: grid;
-    grid-template-columns: 350px minmax(0, 1fr);
-    gap: 28px;
-    align-items: start;
-  }
-  
-  .smart-match-form,
-  .smart-match-results {
+
+  .match-form {
     padding: 26px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+  }
+
+  .match-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 18px;
+  }
+
+  .match-results .property-grid {
+    gap: 22px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+  .smart-match-page {
+    padding: 28px 16px 40px;
+  }
+
+  .smart-match-intro {
+    margin-bottom: 24px;
+    padding: 32px 18px;
+    border-radius: 15px;
+  }
+
+  .smart-match-intro > svg {
+    margin-bottom: 14px;
+  }
+
+  .smart-match-intro .eyebrow {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .smart-match-intro h1 {
+    font-size: 30px;
+    letter-spacing: -0.7px;
+  }
+
+  .smart-match-intro p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .match-form {
+    margin-bottom: 32px;
+    padding: 22px 17px;
     border-radius: 14px;
   }
-  
-  .smart-match-form h2,
-  .smart-match-results h2 {
+
+  .match-form h2 {
+    margin-bottom: 22px;
+    font-size: 20px;
+  }
+
+  .match-form-grid,
+  .match-results .property-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .match-form-grid {
+    gap: 19px;
+  }
+
+  .match-form-grid .match-checkbox {
+    align-self: auto;
+    min-height: 32px;
+  }
+
+  .match-submit {
+    margin-top: 25px;
+  }
+
+  .match-results {
+    margin-top: 34px;
+  }
+
+  .match-results > p {
     margin-bottom: 20px;
   }
-  
-  .smart-match-field {
-    margin-bottom: 18px;
+
+  .match-results .property-grid {
+    gap: 22px;
   }
-  
-  .smart-match-field label {
-    display: block;
-    margin-bottom: 7px;
-    font-weight: 600;
-    font-size: 0.9rem;
+
+  .match-results .empty-state {
+    padding: 40px 18px;
   }
-  
-  .smart-match-form .btn {
-    width: 100%;
+}
+
+/* ---------- Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .match-form-grid input,
+  .match-form-grid select,
+  .match-submit {
+    transition: none;
   }
-  
-  .smart-match-result-card {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding: 18px 0;
-    border-bottom: 1px solid #e2e8f0;
-  }
-  
-  .smart-match-score {
-    width: 66px;
-    height: 66px;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    border: 5px solid #10b981;
-    border-radius: 50%;
-    color: #047857;
-    font-size: 1.1rem;
-    font-weight: 800;
-  }
-  
-  .smart-match-result-info {
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .smart-match-result-info h3 {
-    margin-bottom: 5px;
-    font-size: 1rem;
-  }
-  
-  .smart-match-result-info p {
-    color: #64748b;
-    font-size: 0.9rem;
-  }
-  
-  .smart-match-progress {
-    height: 8px;
-    overflow: hidden;
-    margin-top: 10px;
-    border-radius: 20px;
-    background: #e2e8f0;
-  }
-  
-  .smart-match-progress-fill {
-    height: 100%;
-    border-radius: inherit;
-    background: #10b981;
-  }
-  
-  .smart-match-empty {
-    padding: 35px 15px;
-    text-align: center;
-    color: #64748b;
-  }
-  
-  @media (max-width: 850px) {
-    .smart-match-layout {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @media (max-width: 500px) {
-    .smart-match-form,
-    .smart-match-results {
-      padding: 18px;
-    }
-  
-    .smart-match-result-card {
-      gap: 12px;
-    }
-  }
+}

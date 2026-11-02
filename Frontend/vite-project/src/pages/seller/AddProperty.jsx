@@ -17,8 +17,12 @@ const initialForm = {
   parking: false,
 };
 
+const MAX_IMAGES = 8;
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
+
 export default function AddProperty() {
   const navigate = useNavigate();
+
   const [form, setForm] = useState(initialForm);
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
@@ -26,43 +30,114 @@ export default function AddProperty() {
 
   function updateField(event) {
     const { name, value, type, checked } = event.target;
+
     setForm((previous) => ({
       ...previous,
       [name]: type === "checkbox" ? checked : value,
     }));
   }
 
+  function handleImageSelection(event) {
+    setError("");
+
+    const selected = Array.from(event.target.files || []);
+    event.target.value = "";
+
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+    ];
+
+    if (images.length + selected.length > MAX_IMAGES) {
+      setError(`You can upload a maximum of ${MAX_IMAGES} images.`);
+      return;
+    }
+
+    for (const file of selected) {
+      if (!allowedTypes.includes(file.type)) {
+        setError("Only JPG, PNG and WebP images are allowed.");
+        return;
+      }
+
+      if (file.size > MAX_IMAGE_SIZE) {
+        setError(`${file.name} is larger than 5 MB.`);
+        return;
+      }
+    }
+
+    setImages((previous) => [...previous, ...selected]);
+  }
+
+  function removeImage(index) {
+    setImages((previous) =>
+      previous.filter((_, imageIndex) => imageIndex !== index)
+    );
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     setError("");
+
+    const propertyData = {
+      title: form.title.trim(),
+      description: form.description.trim(),
+      propertyType: form.propertyType,
+      city: form.city.trim(),
+      address: `${form.locality.trim()}, ${form.city.trim()}`,
+      listingType: form.purpose,
+      price: Number(form.price),
+      bedrooms: Number(form.bhk),
+      bathrooms: Number(form.bathrooms),
+      areaSqft: Number(form.area),
+    };
+
+    if (
+      !propertyData.title ||
+      !propertyData.description ||
+      !propertyData.city ||
+      !form.locality.trim() ||
+      !propertyData.price ||
+      propertyData.price <= 0 ||
+      !propertyData.areaSqft ||
+      propertyData.areaSqft <= 0
+    ) {
+      setError("Please fill in all required property details.");
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const body = new FormData();
+      const formData = new FormData();
 
-      const property = {
-        ...form,
-        price: Number(form.price),
-        bhk: Number(form.bhk),
-        bathrooms: Number(form.bathrooms),
-        area: Number(form.area),
-      };
-
-      body.append(
+      formData.append(
         "property",
-        new Blob([JSON.stringify(property)], {
+        new Blob([JSON.stringify(propertyData)], {
           type: "application/json",
         })
       );
 
-      images.forEach((image) => body.append("images", image));
+      images.forEach((image) => {
+        formData.append("images", image);
+      });
 
-      await api.post("/properties", body);
+      await api.post("/properties", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      alert("Property submitted successfully for admin approval!");
+
       navigate("/seller/my-properties");
     } catch (err) {
+      console.error("Add property error:", err.response?.data || err);
+
       setError(
         err.response?.data?.message ||
-        "Could not submit the listing. Check the backend connection."
+        err.response?.data?.error ||
+        "Could not submit the listing. Please try again."
       );
     } finally {
       setLoading(false);
@@ -77,7 +152,12 @@ export default function AddProperty() {
       <form className="property-form" onSubmit={handleSubmit}>
         <label>
           Property title
-          <input name="title" value={form.title} onChange={updateField} required />
+          <input
+            name="title"
+            value={form.title}
+            onChange={updateField}
+            required
+          />
         </label>
 
         <label>
@@ -94,7 +174,11 @@ export default function AddProperty() {
         <div className="form-grid">
           <label>
             Listing purpose
-            <select name="purpose" value={form.purpose} onChange={updateField}>
+            <select
+              name="purpose"
+              value={form.purpose}
+              onChange={updateField}
+            >
               <option value="BUY">For Sale</option>
               <option value="RENT">For Rent</option>
             </select>
@@ -129,7 +213,12 @@ export default function AddProperty() {
 
           <label>
             City
-            <input name="city" value={form.city} onChange={updateField} required />
+            <input
+              name="city"
+              value={form.city}
+              onChange={updateField}
+              required
+            />
           </label>
 
           <label>
@@ -144,7 +233,11 @@ export default function AddProperty() {
 
           <label>
             Bedrooms
-            <select name="bhk" value={form.bhk} onChange={updateField}>
+            <select
+              name="bhk"
+              value={form.bhk}
+              onChange={updateField}
+            >
               <option value="1">1 BHK</option>
               <option value="2">2 BHK</option>
               <option value="3">3 BHK</option>
@@ -187,24 +280,44 @@ export default function AddProperty() {
           Parking available
         </label>
 
-        <label>
-          Property photos (multiple)
+        <label className="photo-upload-label">
+          Property photos (maximum 8)
+
           <input
+            className="property-file-input"
             type="file"
             accept="image/jpeg,image/png,image/webp"
             multiple
-            onChange={(event) =>
-              setImages(Array.from(event.target.files || []))
-            }
+            onChange={handleImageSelection}
           />
         </label>
 
-        <p>{images.length} photo(s) selected</p>
+        <p>{images.length} / {MAX_IMAGES} photo(s) selected</p>
+
+        {images.length > 0 && (
+          <div className="selected-property-images">
+            {images.map((image, index) => (
+              <div className="selected-property-image" key={`${image.name}-${index}`}>
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt={`Selected property ${index + 1}`}
+                />
+                <button
+                  type="button"
+                  onClick={() => removeImage(index)}
+                  aria-label={`Remove image ${index + 1}`}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
 
         {error && <p className="dashboard-error">{error}</p>}
 
         <button type="submit" disabled={loading}>
-          {loading ? "Submitting..." : "Submit Property for Review"}
+          {loading ? "Uploading and submitting..." : "Submit Property for Review"}
         </button>
       </form>
     </main>

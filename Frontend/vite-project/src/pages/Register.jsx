@@ -8,7 +8,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    name: "",
+    fullName: "",
     email: "",
     phone: "",
     password: "",
@@ -54,8 +54,8 @@ export default function Register() {
         <label>
           Full name
           <input
-            name="name"
-            value={form.name}
+            name="fullName"
+            value={form.fullName}
             onChange={updateField}
             required
           />
